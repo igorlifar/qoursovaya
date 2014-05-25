@@ -29,15 +29,15 @@ public class NthElement {
         while (firstGreater <= lastLess) {
             while (firstGreater <= rightBorder && comparator.apply(elements[firstGreater], separator) < 0) {
                 ++firstGreater;
-                if (firstGreater > rightBorder) {
-                    throw new RuntimeException("Check that you use correct comparator");
-                }
+            }
+            if (firstGreater > rightBorder) {
+                throw new RuntimeException("Check that you use correct comparator");
             }
             while (lastLess >= leftBorder && comparator.apply(elements[lastLess], separator) > 0) {
                 --lastLess;
-                if (lastLess < leftBorder) {
-                    throw new RuntimeException("Check that you use correct comparator");
-                }
+            }
+            if (lastLess < leftBorder) {
+                throw new RuntimeException("Check that you use correct comparator");
             }
             if (firstGreater <= lastLess) {
                 swap(elements, firstGreater, lastLess);
