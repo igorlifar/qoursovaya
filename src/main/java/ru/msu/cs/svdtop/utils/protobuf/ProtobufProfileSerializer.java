@@ -6,8 +6,6 @@ import com.google.protobuf.CodedInputStream;
 import com.google.protobuf.CodedOutputStream;
 import ru.msu.cs.svdtop.domain.Profile;
 
-import ru.yandex.bolts.internal.Validate;
-
 /**
  * @author sankear
  */

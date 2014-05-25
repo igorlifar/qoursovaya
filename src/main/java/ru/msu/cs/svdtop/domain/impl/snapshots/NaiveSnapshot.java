@@ -23,6 +23,10 @@ public class NaiveSnapshot implements Snapshot {
         this.profiles = profiles;
     }
 
+    public ListF<ItemProfile> getProfiles() {
+        return profiles;
+    }
+
     public void dumpToFiles(File dir) throws IOException {
         Validate.isTrue(dir.isDirectory(), "Must be directory");
         CodedOutputStream stream = ProtobufUtils.getOutputStream(new File(dir.getAbsolutePath() + "profiles"));
