@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
 import org.apache.log4j.Logger;
 import ru.msu.cs.svdtop.domain.Predictor;
 import ru.msu.cs.svdtop.domain.Profile;
@@ -13,9 +14,11 @@ import ru.msu.cs.svdtop.utils.PredictorUtils;
 import ru.msu.cs.svdtop.utils.Progress;
 import ru.msu.cs.svdtop.utils.SnapshotBuilderUtils;
 import ru.msu.cs.svdtop.utils.Statistic;
+import ru.msu.cs.svdtop.utils.protobuf.ProtobufAnswersSerializer;
 import ru.msu.cs.svdtop.utils.protobuf.ProtobufProfileListSerializer;
 import ru.msu.cs.svdtop.utils.protobuf.ProtobufUtils;
 
+import ru.yandex.bolts.collection.Cf;
 import ru.yandex.bolts.collection.ListF;
 import ru.yandex.bolts.internal.Validate;
 
@@ -29,7 +32,7 @@ public class RunPredictor {
     private static final int TOP_COUNT = 1000;
 
     public static void main(String[] args) throws IOException {
-        Validate.isTrue(args.length >= 4, "");
+        Validate.isTrue(args.length >= 5, "");
 
         logger.info("Load queries from file");
         CodedInputStream stream = ProtobufUtils.getInputStream(new File(args[0]));
@@ -46,9 +49,11 @@ public class RunPredictor {
 
         Predictor predictor = PredictorUtils.getByName(args[3]);
 
+        ListF<ListF<Long>> answers = Cf.arrayList();
+
         for (Profile query : queries) {
             long startTime = System.currentTimeMillis();
-            ListF<Long> answer = predictor.getTop(snapshot, query, TOP_COUNT);
+            answers.add(predictor.getTop(snapshot, query, TOP_COUNT));
             long finishTime = System.currentTimeMillis();
             statistic.add(finishTime - startTime);
             progress.tick();
@@ -58,6 +63,12 @@ public class RunPredictor {
 
         statistic.summary();
 
+        logger.info("Serialize answers");
+        CodedOutputStream output = ProtobufUtils.getOutputStream(new File(args[4]));
+        ProtobufAnswersSerializer.S.serialize(answers, output);
+        output.flush();
+
+        logger.info("Finish");
     }
 
 }
