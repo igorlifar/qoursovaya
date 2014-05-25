@@ -1,4 +1,4 @@
-package ru.msu.cs.svdtop.util;
+package ru.msu.cs.svdtop.utils;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -6,6 +6,7 @@ import java.util.Collection;
 import ru.yandex.bolts.collection.Cf;
 import ru.yandex.bolts.collection.ListF;
 import ru.yandex.bolts.function.forhuman.Comparator;
+import ru.yandex.bolts.internal.Validate;
 
 /**
  * equals input.sorterBy(comparator).take(topSize)
@@ -22,6 +23,7 @@ public class FixedSizeTop<T> {
     protected T[] elements;
 
     public FixedSizeTop(int topSize, Comparator<T> comparator) {
+        Validate.isTrue(topSize > 0, "Size of top must be greater than 0");
         this.topSize = topSize;
         this.currentSize = 0;
         this.elements = (T[]) new Object[topSize * 2];

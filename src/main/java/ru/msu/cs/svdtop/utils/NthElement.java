@@ -1,8 +1,9 @@
-package ru.msu.cs.svdtop.util;
+package ru.msu.cs.svdtop.utils;
 
 import java.util.Random;
 
 import ru.yandex.bolts.function.forhuman.Comparator;
+import ru.yandex.bolts.internal.Validate;
 
 /**
  * @author sankear
@@ -52,10 +53,13 @@ public class NthElement {
     }
 
     public static <T> void inplaceNth(T[] elements, Comparator<T> comparator, int nthPosition) {
+        Validate.isTrue(nthPosition >= 0 && nthPosition < elements.length, "Incorrect nthPosition");
         nth(elements, comparator, 0, elements.length - 1, nthPosition);
     }
 
     public static <T> void inplaceNth(T[] elements, Comparator<T> comparator, int size, int nthPosition) {
+        Validate.isTrue(size <= elements.length, "Size must be less than number of elements");
+        Validate.isTrue(nthPosition >= 0 && nthPosition < size, "Incorrect nthPosition");
         nth(elements, comparator, 0, size - 1, nthPosition);
     }
 
