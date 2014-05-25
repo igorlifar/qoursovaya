@@ -27,6 +27,10 @@ public class NaiveSnapshot implements Snapshot {
         return profiles;
     }
 
+    public String getDefaultDirectory() {
+        return "naive";
+    }
+
     public void dumpToFiles(File dir) throws IOException {
         Validate.isTrue(dir.isDirectory(), "Must be directory");
         CodedOutputStream stream = ProtobufUtils.getOutputStream(new File(dir.getAbsolutePath() + "profiles"));
