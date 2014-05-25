@@ -35,6 +35,7 @@ public class NaiveSnapshot implements Snapshot {
         Validate.isTrue(dir.isDirectory(), "Must be directory");
         CodedOutputStream stream = ProtobufUtils.getOutputStream(new File(dir.getAbsolutePath() + "/profiles"));
         ProtobufItemProfileListSerializer.S.serialize(profiles, stream);
+        stream.flush();
     }
 
 }

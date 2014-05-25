@@ -40,7 +40,7 @@ public class ProtobufUtils {
         Validate.isTrue(file.isFile(), "Must be file");
         CodedOutputStream stream;
         try {
-            stream = CodedOutputStream.newInstance(new BufferedOutputStream(new FileOutputStream(file)));
+            stream = CodedOutputStream.newInstance(new FileOutputStream(file));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

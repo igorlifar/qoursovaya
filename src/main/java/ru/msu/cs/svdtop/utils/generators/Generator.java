@@ -5,6 +5,6 @@ package ru.msu.cs.svdtop.utils.generators;
  */
 public interface Generator<T> {
 
-    T generate(int size);
+    T generate();
 
 }
