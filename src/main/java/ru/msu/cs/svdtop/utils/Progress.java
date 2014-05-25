@@ -50,7 +50,7 @@ public class Progress {
         if (ticks % intervalBetweenTicks == 0) {
             if (maxTicks.isDefined()) {
                 logger.info(String.format(
-                        "Process [%s] started %.2f minutes ago, do %d of %d ticks",
+                        "Process [%s] started %.2f minutes ago, %d of %d ticks",
                         message,
                         (System.currentTimeMillis() - startTime) / (1000.0 * 60),
                         ticks,
