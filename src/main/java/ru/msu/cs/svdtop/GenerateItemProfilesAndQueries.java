@@ -24,7 +24,7 @@ public class GenerateItemProfilesAndQueries {
 
     private static final Logger logger = Logger.getLogger(GenerateItemProfilesAndQueries.class);
 
-    public static final int ITEM_PROFILES = 1_000_000;
+    public static final int ITEM_PROFILES = 1000;
     public static final int QUERIES = 1000;
 
     public static void main(String[] args) throws IOException {
