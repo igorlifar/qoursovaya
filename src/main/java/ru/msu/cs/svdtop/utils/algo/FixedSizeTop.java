@@ -1,4 +1,4 @@
-package ru.msu.cs.svdtop.utils;
+package ru.msu.cs.svdtop.utils.algo;
 
 import java.util.Arrays;
 import java.util.Collection;

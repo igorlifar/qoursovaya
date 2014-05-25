@@ -1,4 +1,4 @@
-package ru.msu.cs.svdtop.utils;
+package ru.msu.cs.svdtop.utils.algo;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ import ru.yandex.bolts.internal.Validate;
  */
 public class NthElement {
 
-    private static Random R = new Random();
+    private static final Random R = new Random();
 
     private static <T> void swap(T[] elements, int i, int j) {
         T tmp = elements[i];
