@@ -33,7 +33,7 @@ public class NaiveSnapshot implements Snapshot {
 
     public void dumpToFiles(File dir) throws IOException {
         Validate.isTrue(dir.isDirectory(), "Must be directory");
-        CodedOutputStream stream = ProtobufUtils.getOutputStream(new File(dir.getAbsolutePath() + "profiles"));
+        CodedOutputStream stream = ProtobufUtils.getOutputStream(new File(dir.getAbsolutePath() + "/profiles"));
         ProtobufItemProfileListSerializer.S.serialize(profiles, stream);
     }
 

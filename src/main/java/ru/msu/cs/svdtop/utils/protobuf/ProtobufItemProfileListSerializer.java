@@ -31,7 +31,7 @@ public class ProtobufItemProfileListSerializer implements ProtobufSerializer<Lis
     public void serialize(ListF<ItemProfile> profiles, CodedOutputStream stream) throws IOException{
         stream.writeInt32NoTag(profiles.size());
         for (ItemProfile profile : profiles) {
-            stream.writeFixed64NoTag(profile.getId());
+            stream.writeInt64NoTag(profile.getId());
             ProtobufProfileSerializer.S.serialize(profile.getProfile(), stream);
         }
     }

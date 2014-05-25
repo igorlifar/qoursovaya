@@ -10,7 +10,7 @@ import ru.yandex.bolts.internal.Validate;
  */
 public class Progress {
 
-    public static final long DEFAULT_INTERVAL_BETWEEN_LOG_MESSAGES = 100;
+    public static final long DEFAULT_INTERVAL_BETWEEN_LOG_MESSAGES = 100_000;
 
     private final Option<Long> maxTicks;
     private final String message;

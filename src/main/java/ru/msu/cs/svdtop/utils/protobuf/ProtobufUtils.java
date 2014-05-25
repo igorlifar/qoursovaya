@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import com.google.protobuf.CodedInputStream;
 import com.google.protobuf.CodedOutputStream;
@@ -29,6 +30,13 @@ public class ProtobufUtils {
     }
 
     public static CodedOutputStream getOutputStream(File file) {
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         Validate.isTrue(file.isFile(), "Must be file");
         CodedOutputStream stream;
         try {

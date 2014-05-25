@@ -29,9 +29,9 @@ public class ItemProfileListGenerator implements Generator<ListF<ItemProfile>> {
         ListF<ItemProfile> profiles = Cf.arrayList(size);
         SetF<Long> existIds = Cf.hashSet();
         for (int i = 0; i < size; ++i) {
-            long id = R.nextLong();
+            long id = Math.abs(R.nextLong());
             while (!existIds.add(id)) {
-                id = R.nextLong();
+                id = Math.abs(R.nextLong());
             }
             double[] profile = new double[DIMENSION];
             for (int j = 0; j < DIMENSION; ++j) {

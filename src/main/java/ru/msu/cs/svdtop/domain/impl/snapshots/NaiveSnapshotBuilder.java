@@ -23,7 +23,7 @@ public class NaiveSnapshotBuilder implements SnapshotBuilder<NaiveSnapshot> {
 
     public NaiveSnapshot fromFiles(File dir) throws IOException {
         Validate.isTrue(dir.isDirectory(), "Must be directory");
-        CodedInputStream stream = ProtobufUtils.getInputStream(new File(dir.getAbsolutePath() + "profiles"));
+        CodedInputStream stream = ProtobufUtils.getInputStream(new File(dir.getAbsolutePath() + "/profiles"));
         return new NaiveSnapshot(ProtobufItemProfileListSerializer.S.deserialize(stream));
     }
 
